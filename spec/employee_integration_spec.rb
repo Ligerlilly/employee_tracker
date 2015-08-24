@@ -56,7 +56,7 @@ describe 'employee tracker path', {type: :feature} do
     expect(page).not_to have_content('Tim')
   end
 
-  it 'allows you to remove an employee from a division' do
+  it 'allows you to remove an employee from a project' do
     Project.delete_all
     Employee.delete_all
     @project = Project.create(name: 'Warehouse')
@@ -66,5 +66,13 @@ describe 'employee tracker path', {type: :feature} do
     expect(page).to have_content('Projects Warehouse edit Tim delete Submit Home')
     click_link 'delete'
     expect(page).not_to have_content 'Tim'
+  end
+
+  it 'allows you to add a project' do
+    visit '/'
+    click_link 'Projects'
+    fill_in 'name', with: 'Black Mesa'
+    click_button('Submit')
+    expect(page).to have_content 'Black Mesa'
   end
 end
