@@ -1,0 +1,22 @@
+<% if Division.any? %>
+  <ul>
+    <% Division.all.each do |div| %>
+      <li><%= div.name %> <a href="/divisions/<%= div.id %>/edit">edit</a></li>
+    <% end %>
+  </ul>
+
+<% else %>
+  <p>
+    There are no divisions add one.
+  </p>
+
+<% end %>
+
+<form action="/divisions" method="post">
+    <div class="form-group">
+      <input name="name" class="form-control" type="text">
+    </div>
+
+    <button name="submit" class='btn btn-primary'>Submit</button>
+
+</form>
