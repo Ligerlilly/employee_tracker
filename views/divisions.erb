@@ -6,7 +6,7 @@
       <li><%= div.name %> <a href="/divisions/<%= div.id %>/edit">edit</a>
         <ul>
           <% div.employees.each do |emp| %>
-            <li><%= emp.name %> <a href="/remove_employee/<%= emp.id %>">Delete</a></li>
+            <li><%= emp.name %> <a href="/remove_employee/<%= emp.id %>">delete</a></li>
           <% end %>
         </ul>
       </li>

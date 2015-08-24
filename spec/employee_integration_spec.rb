@@ -15,6 +15,7 @@ describe 'employee tracker path', {type: :feature} do
   end
 
   it 'allows you to delete divisions' do
+    Division.delete_all
     @division = Division.create({ name: 'Tea' })
     visit "/divisions/#{@division.id}/edit"
     expect(page).to have_content 'Tea'
@@ -53,5 +54,17 @@ describe 'employee tracker path', {type: :feature} do
     click_link 'edit'
     click_button 'Delete'
     expect(page).not_to have_content('Tim')
+  end
+
+  it 'allows you to remove an employee from a division' do
+    Division.delete_all
+    Employee.delete_all
+    @employee = Employee.create({ name: 'Tim'})
+    @division = Division.create({ name: 'Warehouse' })
+    @employee.update({division_id: @division.id})
+    visit '/divisions'
+    expect(page).to have_content('Divisions Warehouse edit Tim delete Submit Home')
+    click_link 'delete'
+    expect(page).not_to have_content 'Tim'
   end
 end
