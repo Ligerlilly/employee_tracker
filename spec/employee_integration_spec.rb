@@ -46,4 +46,12 @@ describe 'employee tracker path', {type: :feature} do
   click_button 'Submit'
   expect(page).to have_content 'Bill'
   end
+
+  it 'allows you to delete an employee' do
+    @employee = Employee.create({ name: 'Tim'})
+    visit '/employees'
+    click_link 'edit'
+    click_button 'Delete'
+    expect(page).not_to have_content('Tim')
+  end
 end
