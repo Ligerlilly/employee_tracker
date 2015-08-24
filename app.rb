@@ -42,6 +42,12 @@ delete '/projects/:id' do
 	redirect :projects
 end
 
+get '/remove_project/:id' do
+	@project = Project.find(params['id'].to_i)
+	@project.update({ division_id: 0 })
+	redirect '/divisions'
+end
+
 get '/divisions' do
 	# @divisions = Division.all
 	erb :divisions
@@ -64,9 +70,9 @@ delete '/divisions/:id' do
 end
 
 patch '/divisions/:id' do
-	if params['employee'] != 'employees'
-	  @employee = Employee.find(params['employee'])
-	  @employee.update({ division_id: params['id'] })
+	if params['project'] != 'projects'
+	  @project = Project.find(params['project'])
+	  @project.update({ division_id: params['id'] })
 	end
 	@division = Division.find(params['id'])
 
@@ -102,6 +108,6 @@ end
 
 get '/remove_employee/:id' do
 	@employee = Employee.find(params['id'].to_i)
-	@employee.update({ division_id: 0 })
+	@employee.update({ project_id: 0 })
 	redirect '/divisions'
 end

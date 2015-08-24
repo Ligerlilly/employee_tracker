@@ -6,7 +6,13 @@
       <li><%= div.name %> <a href="/divisions/<%= div.id %>/edit">edit</a>
         <ul>
           <% div.projects.each do |proj| %>
-            <li><%= proj.name %> <a href="/remove_project/<%= proj.id %>">delete</a></li>
+            <li><%= proj.name %> <a href="/remove_project/<%= proj.id %>">delete</a>
+              <ul>
+                <% proj.employees.each do |emp| %>
+                  <li><a href="/employees/<%= emp.id %>/edit"><%= emp.name %></a></li>
+                <% end %>
+              </ul>
+            </li>
           <% end %>
         </ul>
       </li>

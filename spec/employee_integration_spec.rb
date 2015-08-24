@@ -57,13 +57,13 @@ describe 'employee tracker path', {type: :feature} do
   end
 
   it 'allows you to remove an employee from a division' do
-    Division.delete_all
+    Project.delete_all
     Employee.delete_all
+    @project = Project.create(name: 'Warehouse')
     @employee = Employee.create({ name: 'Tim'})
-    @division = Division.create({ name: 'Warehouse' })
-    @employee.update({division_id: @division.id})
-    visit '/divisions'
-    expect(page).to have_content('Divisions Warehouse edit Tim delete Submit Home')
+    @employee.update({ project_id: @project.id })
+    visit '/projects'
+    expect(page).to have_content('Projects Warehouse edit Tim delete Submit Home')
     click_link 'delete'
     expect(page).not_to have_content 'Tim'
   end
