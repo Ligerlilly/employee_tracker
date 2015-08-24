@@ -12,7 +12,7 @@ end
 
 
 get '/divisions' do
-	@divisions = Division.all
+	# @divisions = Division.all
 	erb :divisions
 end
 
@@ -36,4 +36,13 @@ patch '/divisions/:id' do
 	@division = Division.find(params['id'])
 	@division.update({name: params['name']})
 	erb :edit
+end
+
+get '/employees' do
+	erb :employees
+end
+
+post '/employees' do
+	@employee = Employee.create({name: params['name']})
+	erb :employees
 end
