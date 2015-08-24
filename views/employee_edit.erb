@@ -1,0 +1,16 @@
+<h2>Edit</h2>
+
+
+<h4><%= @employee.name %></h4>
+
+<form action="/employees/<%= @employee.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+
+  <input type="text" name="name">
+  <button name="submit" type="submit">Submit</button>
+</form>
+<br>
+<form  action='/employees/<%= @employee.id %>' method="post">
+  <input type="hidden" name="_method" value="delete">
+  <button type='submit'>Delete</button>
+</form>

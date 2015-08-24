@@ -1,7 +1,15 @@
+<h4>Divisions</h4>
+
 <% if Division.any? %>
   <ul>
     <% Division.all.each do |div| %>
-      <li><%= div.name %> <a href="/divisions/<%= div.id %>/edit">edit</a></li>
+      <li><%= div.name %> <a href="/divisions/<%= div.id %>/edit">edit</a>
+        <ul>
+          <% div.employees.each do |emp| %>
+            <li><%= emp.name %> <a href="/remove_employee/<%= emp.id %>">Delete</a></li>
+          <% end %>
+        </ul>
+      </li>
     <% end %>
   </ul>
 

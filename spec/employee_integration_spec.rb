@@ -37,4 +37,13 @@ describe 'employee tracker path', {type: :feature} do
     click_button 'Submit'
     expect(page).to have_content 'Todd'
   end
+
+  it 'allows you to update an employee' do
+  @employee = Employee.create(name: 'Winston')
+  visit '/employees'
+  click_link 'edit'
+  fill_in 'name', with: 'Bill'
+  click_button 'Submit'
+  expect(page).to have_content 'Bill'
+  end
 end

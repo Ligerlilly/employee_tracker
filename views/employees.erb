@@ -1,0 +1,24 @@
+<% if Employee.any? %>
+  <ul>
+    <% Employee.all.each do |emp| %>
+      <li><%= emp.name %> <a href="/employees/<%= emp.id %>/edit">edit</a></li>
+    <% end %>
+  </ul>
+
+<% else %>
+  <p>
+    There are no employees add one.
+  </p>
+
+<% end %>
+
+<form action="/employees" method="post">
+    <div class="form-group">
+      <input name="name" class="form-control" type="text">
+    </div>
+
+    <button name="submit" class='btn btn-primary'>Submit</button>
+
+</form>
+<br>
+<a href="/">Home</a>
