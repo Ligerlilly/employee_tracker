@@ -75,4 +75,13 @@ describe 'employee tracker path', {type: :feature} do
     click_button('Submit')
     expect(page).to have_content 'Black Mesa'
   end
+
+  it 'allows you to delete a project' do
+    Project.delete_all
+    @project = Project.create(name: 'Manhattan')
+    visit '/projects'
+    click_link 'edit'
+    click_button 'Delete'
+    expect(page).not_to have_content('Manhattan')
+  end
 end

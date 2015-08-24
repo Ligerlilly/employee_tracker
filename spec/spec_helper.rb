@@ -11,5 +11,11 @@ RSpec.configure do |config|
     Employee.all.each do |task|
       task.destroy
     end
+    Project.all.each do |task|
+      task.destroy
+    end
+    Division.all.each do |task|
+      task.destroy
+    end
   end
 end
